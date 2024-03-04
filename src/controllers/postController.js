@@ -43,7 +43,7 @@ exports.updatePost = async (req, res) => {
 exports.deletePost = async (req, res) => {
   try {
     const deletePost = await Post.findByIdAndDelete(req.params.id);
-    res.status(200).send({message: 'Post Deleted Sucessfully'});
+    res.status(200).send({ message: "Post Deleted Sucessfully" });
   } catch (error) {
     res.status(400).send(error);
   }
