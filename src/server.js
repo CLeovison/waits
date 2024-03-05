@@ -22,3 +22,4 @@ app.listen(PORT, () =>{
 //Cross Origin Resource Sharing (CORS);
 
 
+console.log('Fuckshit');
