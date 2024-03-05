@@ -27,25 +27,23 @@ exports.getAllPosts = async (req, res) => {
 };
 
 
-//Read/Get A Post By Just Getting The ID
-exports.getPostsByID = async(req, res) =>{
-  try{
-    const postID = await Post.findById(req.params.id, req.body,{
-      new: true
-    })
-    res.status(200).send(postID)
-  }catch(error){
-    res.status(400).send(error);
-  }
-}
+// //Read/Get A Post By Just Getting The ID
+// exports.getPostsByID = async(req, res) =>{
+//   try{
+//     const postID = await Post.findById(req.params.id,{
+//       new: true
+//     })
+//     res.status(200).send(postID)
+//   }catch(error){
+//     res.status(400).send(error);
+//   }
+// }
 
 //Update a post by ID
 
 exports.updatePost = async (req, res) => {
   try {
-    const updatePost = await Post.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
+    const updatePost = await Post.findByIdAndUpdate(req.params.id, req.body);
     res.status(200).send(updatePost);
   } catch (error) {
     res.status(400).send(error);
