@@ -30,10 +30,8 @@ exports.getAllPosts = async (req, res) => {
 //Read/Get A Post By Just Getting The ID
 exports.getPostsByID = async(req, res) =>{
   try{
-    const postID = await Post.findById(req.params.id, req.body,{
-      new: true
-    })
-    res.status(200).send(postID)
+    const post = await Post.findById(req.params.id)
+    res.status(200).send(post)
   }catch(error){
     res.status(400).send(error);
   }
