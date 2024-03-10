@@ -21,12 +21,10 @@ const RegisterSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  contactnum: Number
-
+  phonenum: Number,
 });
 
 module.exports = mongoose.model("Register", RegisterSchema);
-
 
 //The First Thing That you need to do is to create a schema so you know what the data that the database should get
 //Second is to create a Routes so you can access the data from the Model
