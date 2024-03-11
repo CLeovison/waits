@@ -17,11 +17,8 @@ const RegisterSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  address: {
-    type: String,
-    required: true,
-  },
-  phonenum: Number,
+
+  phonenum: Number
 });
 
 module.exports = mongoose.model("Register", RegisterSchema);

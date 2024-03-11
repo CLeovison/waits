@@ -12,12 +12,31 @@ exports.createPost = async (req, res) => {
 };
 
 exports.getAllPost = async (req, res) => {
-  try{
+  try {
     const post = await Register.find();
-    res.status(200).send(post)
+    res.status(200).send(post);
     return;
-  }catch(error){
-    res.status(400).send(error)
+  } catch (error) {
+    res.status(400).send(error);
   }
+};
 
+
+
+exports.updatePost = async (req, res) => {
+  try {
+    const updatePost = await Register.findByIdAndUpdate(req.params.id, req.body);
+    res.status(200).send(updatePost);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
+
+exports.deletePost = async (req, res) => {
+  try {
+    const deletePost = await Register.findByIdAndDelete(req.params.id);
+    res.status(200).send({ message: "Post Deleted Sucessfully" });
+  } catch (error) {
+    res.status(400).send(error);
+  }
 };
