@@ -13,7 +13,7 @@ app.use(express.json());
 mongoose.connect(process.env.MONGODB_URI)
 .then(() => console.log("MongoDB connectd"))
 .catch(err => console.log(err))
-
+ 
 app.use('/posts', registerRoutes)
 
 app.listen(PORT, () =>{
