@@ -21,11 +21,26 @@ exports.getAllPost = async (req, res) => {
   }
 };
 
+exports.getPaginated = async (req, res) => {
+  try {
+    const page = req.query.page;
+    const limit = req.query.limit;
 
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit
+
+    
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
 
 exports.updatePost = async (req, res) => {
   try {
-    const updatePost = await Register.findByIdAndUpdate(req.params.id, req.body);
+    const updatePost = await Register.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
     res.status(200).send(updatePost);
   } catch (error) {
     res.status(400).send(error);

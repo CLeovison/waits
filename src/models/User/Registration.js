@@ -18,7 +18,7 @@ const RegisterSchema = new mongoose.Schema({
     required: true,
   },
 
-  phonenum: Number
+  phonenum: String
 });
 
 module.exports = mongoose.model("Register", RegisterSchema);
