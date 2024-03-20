@@ -13,6 +13,7 @@ exports.createPost = async (req, res) => {
   } catch (error) {
     res.status(400).send(error);
   }
+ 
 };
 
 //Read/get a new post
@@ -28,14 +29,16 @@ exports.getAllPosts = async (req, res) => {
 
 exports.getPaginatedPosts = async (req, res) => {
   const { page = 1, limit = 10 } = req.query; // Default to page 1, limit 10 if not provided
+  
   try {
     // Calculate the total number of documents
     const total = await Post.countDocuments();
     // Find documents, skip the pages before the current page and limit the results
-    const posts = await Post.find().limit(limit * 1) // convert to number
+    const posts = await Post.find()
+      .limit(limit * 1) // convert to number
       .skip((page - 1) * limit)
-      .exec()
- 
+      .exec();
+  
     // Calculate total pages
     const totalPages = Math.ceil(total / limit);
     
@@ -45,6 +48,7 @@ exports.getPaginatedPosts = async (req, res) => {
     res.status(500).send({ message: "Error fetching posts", error: error });
   }
 };
+
 
 //Read/Get A Post By Just Getting The ID
 exports.getPostsByID = async (req, res) => {

@@ -7,7 +7,7 @@
     "mongoose": "^8.2.0"
   },
   "scripts":{
-    "devStart": "nodemon ./src/server.js"
+    "devStart": "nodemon --inspect ./src/server.js"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
