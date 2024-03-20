@@ -38,7 +38,9 @@ exports.getPaginatedPosts = async (req, res) => {
  
     // Calculate total pages
     const totalPages = Math.ceil(total / limit);
+    
     res.status(200).json({ posts, totalPages, currentPage: page, limit });
+   
   } catch (error) {
     res.status(500).send({ message: "Error fetching posts", error: error });
   }
