@@ -38,6 +38,7 @@ exports.getPaginatedPosts = async (req, res) => {
   .limit(limit * 1) // convert to number
   .skip((page - 1) * limit)
   .exec();
+ 
   // Calculate total pages
   const totalPages = Math.ceil(total / limit);
   res.status(200).json({posts,totalPages, currentPage: page, limit});
