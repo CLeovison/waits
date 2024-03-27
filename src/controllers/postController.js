@@ -13,11 +13,10 @@ exports.createPost = async (req, res) => {
   } catch (error) {
     res.status(400).send(error);
   }
- 
 };
 
 //Read/get a new post
-exports.getAllPosts = async (req, res) => { 
+exports.getAllPosts = async (req, res) => {
   try {
     const posts = await Post.find();
     res.status(200).send(posts);
@@ -29,24 +28,31 @@ exports.getAllPosts = async (req, res) => {
 };
 
 exports.getPaginatedPosts = async (req, res) => {
-  const { page = 1, limit = 10 } = req.query; // Default to page 1, limit 10 if not provided
+  // destructure page and limit and set default values
+  const { page = 1, limit = 10 } = req.query;
+
   try {
-    // Calculate the total number of documents
-    const total = await Post.countDocuments();
-    // Find documents, skip the pages before the current page and limit the results
+    // execute query with page and limit values
     const posts = await Post.find()
-      .limit(limit * 1) // convert to number
+      .limit(limit * 1)
       .skip((page - 1) * limit)
       .exec();
-  
-    // Calculate total pages
-    const totalPages = Math.ceil(total / limit);
-    res.status(200).json({ posts, totalPages, currentPage: page, limit });
-  } catch (error) {
-  res.status(500).send({ message: 'Error fetching posts', error: error });
-  }
- };
 
+    // get total documents in the Posts collection
+    const count = await Post.countDocuments();
+
+    const totalPages = Math.ceil(count / limit);
+    // return response with posts, total pages, and current page
+    res.status(200).json({
+      posts,
+      totalPages,
+      currentPage: page,
+      limit
+    });
+  } catch (err) {
+    res.status(400).send({ message: "Error Fetching the Data", error: err });
+  }
+};
 
 //Read/Get A Post By Just Getting The ID
 exports.getPostsByID = async (req, res) => {
